@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 
 @pytest.fixture(autouse=True)
 def driverChrome():
-    pytest.driver = webdriver.Chrome("C:/Users/ComputerLand/Downloads/chromedriver_win32/chromedriver.exe")
+    pytest.driver = webdriver.Chrome("./chromedriver.exe")
     pytest.driver.implicitly_wait(10)
     pytest.driver.maximize_window()
     pytest.driver.get('http://petfriends.skillfactory.ru/login')
@@ -22,8 +22,7 @@ def logging_in_and_go_to_my_pets():
     pytest.driver.find_element(By.ID, 'email').send_keys('los1917@bk.ru')
     WebDriverWait(pytest.driver, 10).until(EC.presence_of_element_located((By.ID, "pass")))
     pytest.driver.find_element(By.ID, 'pass').send_keys('123456')
-    WebDriverWait(pytest.driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'button['
-                                                                                           'type="submit"]')))
+    WebDriverWait(pytest.driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'button[type="submit"]')))
     pytest.driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
     WebDriverWait(pytest.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, 'Мои питомцы')))
     pytest.driver.find_element(By.LINK_TEXT, 'Мои питомцы').click()
